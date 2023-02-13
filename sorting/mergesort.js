@@ -11,7 +11,6 @@ function mergeSort(arr)
     let right=arr.slice(mid)
 
 
-
     return sort(mergeSort(left), mergeSort(right))
 
 }
@@ -98,5 +97,5 @@ function mergeSortII(arr)
 
 
 
-let a = mergeSortII(arr)
+let a = mergeSortII([4,2,7,1,4,3,9])
 console.log(a);

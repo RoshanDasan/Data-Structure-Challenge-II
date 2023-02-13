@@ -1,8 +1,6 @@
 
 const map = new Map()
 
-
-
 console.log(map.has('c'));
 
 map.set('a',1)

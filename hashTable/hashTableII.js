@@ -31,16 +31,60 @@ class HashTable {
       }
       return undefined;
     }
+
+    values()
+    {
+      let values =[]
+      for(let i=0; i<this.keyMap.length;i++)
+      {
+        if(this.keyMap[i])
+        {
+          for(let j=0; j<this.keyMap[i].length;j++)
+          {
+            if(!values.includes(this.keyMap[i][j][1]))
+            {
+              values.push(this.keyMap[i][j][1])
+            }
+          }
+        }
+      }
+      console.log(values);
+      return values
+    }
+
+    keys()
+    {
+      let keys =[]
+      for(let i=0; i<this.keyMap.length;i++)
+      {
+        if(this.keyMap[i])
+        {
+          for(let j=0; j<this.keyMap[i].length;j++)
+          {
+            if(!keys.includes(this.keyMap[i][j][0]))
+            {
+              keys.push(this.keyMap[i][j][0])
+            }
+          }
+        }
+      }
+      console.log(keys);
+      return keys
+    }
   }
   
-  let ht = new HashTable(17);
-  ht.set("roshan", "21")
-  ht.set("nikhil", "24")
-  ht.set("aromal", "23")
-  ht.set("arjun", "27")
-  ht.set("sterin", "31")
 
+  var hashtable = new HashTable(17)
 
-  console.log(ht.get("roshannn"));
+  hashtable.set("Ronaldo", "portugal")
+  hashtable.set("Messi", "Argentina")
+  hashtable.set("Neymer", "Brazil")
+  hashtable.set("Mbappe", "France")
+  hashtable.set("Debruyne", "Belgium")
+  hashtable.set("Lewandowski", "Poland")
+  hashtable.set("Casemiro", "Brazil")
   
+  console.log(hashtable);
+  
+  console.log(hashtable.get("Ronaldo")); 
   

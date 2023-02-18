@@ -5,8 +5,7 @@ function Pivot(arr, start, end) {
   for (let i = start + 1; i <= end; i++) {
     if (pivot > arr[i]) {
       startIndex++;
-      if(startIndex!=i)
-      {
+      if (startIndex != i) {
         swap(arr, startIndex, i);
       }
     }

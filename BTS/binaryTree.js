@@ -28,9 +28,7 @@ class BTS {
           return;
         }
         currentNode = currentNode.left;
-      }
-      
-      else {
+      } else {
         if (currentNode.right == null) {
           currentNode.right = new Tree(value);
           return;

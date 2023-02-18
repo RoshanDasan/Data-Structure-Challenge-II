@@ -10,22 +10,17 @@ function insertion(arr) {
   return arr;
 }
 
-
-
 // second time
 
-function insertionsortII(arr)
-{
-  for(i=1; i<arr.length;i++)
-  {
-    let value = arr[i]
-    for(j=i-1;j>=0 && arr[j]>value;j--)
-    {
-      arr[j+1]=arr[j]
+function insertionsortII(arr) {
+  for (i = 1; i < arr.length; i++) {
+    let value = arr[i];
+    for (j = i - 1; j >= 0 && arr[j] > value; j--) {
+      arr[j + 1] = arr[j];
     }
-    arr[j+1]=value
+    arr[j + 1] = value;
   }
-  return arr
+  return arr;
 }
 
-console.log(insertionsortII([5,2,9,1,5,3,0,7]));
+console.log(insertionsortII([5, 2, 9, 1, 5, 3, 0, 7]));

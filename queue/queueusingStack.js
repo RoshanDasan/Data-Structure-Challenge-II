@@ -1,55 +1,43 @@
-class Queue{
-    constructor()
-    {
-        this.stack1 = []
-        this.stack2 = []
+class Queue {
+  constructor() {
+    this.stack1 = [];
+    this.stack2 = [];
+  }
+
+  enqueue(element) {
+    this.stack1.push(element);
+  }
+
+  dequeue() {
+    if (!this.stack2.length) {
+      while (this.stack1.length) {
+        this.stack2.push(this.stack1.pop());
+      }
     }
 
-    enqueue(element)
-    {
-        this.stack1.push(element)
+    this.stack2.pop() || null;
+
+    while (this.stack2.length) {
+      this.stack1.push(this.stack2.pop());
     }
 
-    dequeue()
-    {
+    return this.stack2;
+  }
 
-        if (!this.stack2.length) {
-            while (this.stack1.length) {
-              this.stack2.push(this.stack1.pop());
-            }
-          }
-          
-          this.stack2.pop() || null;
-
-          while(this.stack2.length)
-          {
-            this.stack1.push(this.stack2.pop())
-          }
-
-          return this.stack2
-    }
-
-    display()
-    {
-        console.log(this.stack1);
-    }
-
-
+  display() {
+    console.log(this.stack1);
+  }
 }
 
-let queue = new Queue()
+let queue = new Queue();
 
-queue.enqueue(1)
-queue.enqueue(2)
-queue.enqueue(3)
-queue.enqueue(4)
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+queue.enqueue(4);
 
+queue.display();
 
-queue.display()
+queue.dequeue();
 
-queue.dequeue()
-
-queue.display()
-
-
-
+queue.display();

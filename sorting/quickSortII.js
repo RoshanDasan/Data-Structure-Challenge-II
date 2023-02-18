@@ -1,5 +1,3 @@
-
-
 function quickSort(arr, start = 0, end = arr.length - 1) {
   if (start < end) {
     let pivot = getPivot(arr, start, end);
@@ -13,8 +11,6 @@ function quickSort(arr, start = 0, end = arr.length - 1) {
 
   return arr;
 }
-
-
 
 function getPivot(arr, start, end) {
   let pivot = arr[start];
@@ -30,13 +26,9 @@ function getPivot(arr, start, end) {
   return startIndex;
 }
 
-
-
 function swap(arr, left, right) {
   [arr[left], arr[right]] = [arr[right], arr[left]];
 }
-
-
 
 // mergeSort
 
@@ -47,8 +39,6 @@ function mergeSort(arr) {
 
   return swaper(mergeSort(arr.slice(0, mid)), mergeSort(arr.slice(mid)));
 }
-
-
 
 function swaper(left, right) {
   let i = 0,

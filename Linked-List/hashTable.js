@@ -22,6 +22,7 @@ class LinkedListNode {
     }
   
     insert(key, value) {
+      
       let index = this.hash(key);
       if (!this.buckets[index]) this.buckets[index] = new LinkedListNode(key, value);
       else {

@@ -26,39 +26,41 @@ class Stack {
 
 // ________leetcode__________
 
-var MyStack = function () {
-  this.queue = [];
-};
+class MyStack {
+  constructor() {
+    this.queue = [];
+  }
+  /**
+   * @param {number} x
+   * @return {void}
+   */
+  push(x) {
+    this.queue.push(x);
+    console.log(this.queue);
+  }
+  /**
+   * @return {number}
+   */
+  pop() {
+    return this.queue.pop(this.queue.shift());
+  }
+  /**
+   * @return {number}
+   */
+  top() {
+    return this.queue[this.queue.length - 1];
+  }
+  /**
+   * @return {boolean}
+   */
+  empty() {
+    return this.queue.length === null || this.queue.length === 0;
+  }
+}
 
-/**
- * @param {number} x
- * @return {void}
- */
-MyStack.prototype.push = function (x) {
-  this.queue.push(x);
-  console.log(this.queue);
-};
 
-/**
- * @return {number}
- */
-MyStack.prototype.pop = function () {
-  return this.queue.pop(this.queue.shift());
-};
 
-/**
- * @return {number}
- */
-MyStack.prototype.top = function () {
-  return this.queue[this.queue.length - 1];
-};
 
-/**
- * @return {boolean}
- */
-MyStack.prototype.empty = function () {
-  return this.queue.length === null || this.queue.length === 0;
-};
 
 /**
  * Your MyStack object will be instantiated and called as such:

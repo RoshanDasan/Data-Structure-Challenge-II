@@ -10,7 +10,7 @@ class LinkedList {
     this.head = null;
     this.tail = null;
   }
-
+ 
   add(value) {
     const node = new Node(value);
     if (!this.head) {

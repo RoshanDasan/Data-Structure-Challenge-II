@@ -16,17 +16,20 @@ class MaxHeap {
       this.sinkDown(0);
     }
     return max;
+
   }
 
   bubbleUp() {
     let index = this.heap.length - 1;
     while (index > 0) {
+      
       const parentIndex = Math.floor((index - 1) / 2);
       if (this.heap[parentIndex] >= this.heap[index]) break;
       this.swap(index, parentIndex);
       index = parentIndex;
     }
   }
+
 
   sinkDown(index) {
     const leftChildIndex = 2 * index + 1;
@@ -48,6 +51,7 @@ class MaxHeap {
   }
 
   swap(i, j) {
+
     [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
   }
 }

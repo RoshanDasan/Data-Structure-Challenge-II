@@ -36,9 +36,6 @@ class Trie {
     return true;
   }
 
-  display() {
-    let word = {};
-  }
 }
 
 let trie = new Trie();

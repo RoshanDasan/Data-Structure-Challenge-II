@@ -1,4 +1,4 @@
-class Tree {
+class TreeNode {
   constructor(value) {
     this.value = value;
     this.left = null;
@@ -6,31 +6,31 @@ class Tree {
   }
 }
 
-class BTS {
+class BST {
   constructor() {
     this.root = null;
   }
 
   set(value) {
-    if (this.root == null) {
-      this.root = new Tree(value);
+    if (this.root === null) {
+      this.root = new TreeNode(value);
       return;
     }
 
-    var currentNode = this.root;
+    let currentNode = this.root;
 
     while (true) {
-      if (currentNode.value == value) return null;
+      if (value === currentNode.value) return; // Do not allow duplicate values
 
       if (value < currentNode.value) {
-        if (currentNode.left == null) {
-          currentNode.left = new Tree(value);
+        if (currentNode.left === null) {
+          currentNode.left = new TreeNode(value);
           return;
         }
         currentNode = currentNode.left;
       } else {
-        if (currentNode.right == null) {
-          currentNode.right = new Tree(value);
+        if (currentNode.right === null) {
+          currentNode.right = new TreeNode(value);
           return;
         }
         currentNode = currentNode.right;
@@ -39,124 +39,101 @@ class BTS {
   }
 
   get(value) {
-    if (this.root == null) return false;
-    var currentNode = this.root;
-    var found = false;
+    let currentNode = this.root;
 
-    while (!found && currentNode) {
+    while (currentNode !== null) {
       if (value < currentNode.value) {
         currentNode = currentNode.left;
       } else if (value > currentNode.value) {
         currentNode = currentNode.right;
       } else {
-        found = true;
+        return currentNode;
       }
     }
-    if (!found) return false;
 
-    return currentNode;
+    return false;
   }
 
   remove(value) {
-    this.delete(this.root, value);
+    this.root = this.deleteNode(this.root, value);
   }
 
-  delete(root, value) {
-    if (root.value > value) {
-      root.left = this.delete(root.left, value);
-    } else if (root.value < value) {
-      root.right = this.delete(root.right, value);
+  deleteNode(root, value) {
+    if (root === null) return root; 
+    if (value < root.value) {
+      root.left = this.deleteNode(root.left, value);
+    } else if (value > root.value) {
+      root.right = this.deleteNode(root.right, value);
     } else {
-      if (root.left == null && root.right == null) return null;
+      if (root.left === null) return root.right;
+      if (root.right === null) return root.left;
 
-      if (root.right == null) return root.left;
-
-      if (root.left == null) return root.right;
-
-      let del = this.innorderSuccessor(root.right);
-
-      root.value = del.value;
-
-      root.right = this.delete(root.right, del.value);
+      let temp = this.findMinNode(root.right);
+      root.value = temp.value;
+      root.right = this.deleteNode(root.right, temp.value);
     }
+
     return root;
   }
 
-  innorderSuccessor(root) {
-    while (root.left != null) {
-      root = root.left;
+  findMinNode(node) {
+    while (node.left !== null) {
+      node = node.left;
     }
-    return root;
+    return node;
   }
 
-  BFS() {
-    var node = this.root;
+  inOrderTraversal() {
+    const result = [];
 
-    var queue = [],
-      result = [];
+    function traverse(node) {
+      if (node === null) return;
 
-    queue.push(node);
-
-    while (queue.length) {
-      node = queue.shift();
+      traverse(node.left);
       result.push(node.value);
-
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
+      traverse(node.right);
     }
+
+    traverse(this.root);
 
     return result;
   }
 
-  DFpreOrder() {
-    var result = [];
+  preOrderTraversal() {
+    const result = [];
 
-    function traversal(node) {
+    function traverse(node) {
+      if (node === null) return;
+
       result.push(node.value);
-
-      if (node.left) traversal(node.left);
-
-      if (node.right) traversal(node.right);
+      traverse(node.left);
+      traverse(node.right);
     }
 
-    traversal(this.root);
+    traverse(this.root);
 
     return result;
   }
 
-  DFpostOrder() {
-    var result = [];
+  postOrderTraversal() {
+    const result = [];
 
-    function traversal(node) {
-      if (node.left) traversal(node.left);
+    function traverse(node) {
+      if (node === null) return;
 
-      if (node.right) traversal(node.right);
-
+      traverse(node.left);
+      traverse(node.right);
       result.push(node.value);
     }
 
-    traversal(this.root);
-
-    return result;
-  }
-  DFinOrder() {
-    var result = [];
-
-    function traversal(node) {
-      if (node.left) traversal(node.left);
-
-      result.push(node.value);
-
-      if (node.right) traversal(node.right);
-    }
-
-    traversal(this.root);
+    traverse(this.root);
 
     return result;
   }
 }
 
-let binarySearch = new BTS();
+// Example usage:
+let binarySearch = new BST();
 
 binarySearch.set(1);
 binarySearch.set(4);
@@ -165,7 +142,10 @@ binarySearch.set(6);
 binarySearch.set(7);
 binarySearch.set(20);
 
-binarySearch.remove(277);
+binarySearch.remove(6);
 
-console.log(binarySearch.BFS());
-console.log(binarySearch.get(5));
+console.log(binarySearch.get(4));
+
+console.log(binarySearch.inOrderTraversal()); // [1, 2, 4, 7, 20]
+console.log(binarySearch.preOrderTraversal()); // [7, 4, 2, 1, 20]
+console.log(binarySearch.postOrderTraversal()); // [1, 2, 4, 20, 7]

@@ -44,7 +44,7 @@ class Bst {
       traverse(node.right);
     }
     traverse(this.root);
-    return result
+    return result;
   }
 
   remove(value) {
@@ -52,19 +52,18 @@ class Bst {
   }
 
   delete(root, value) {
-    if (root === null) return root;
-    if (root.value < value) {
+    if (root === null) return;
+    if (root.value > value) {
       root.left = this.delete(root.left, value);
-    } else if (root.value > value) {
+    } else if (root.value < value) {
       root.right = this.delete(root.right, value);
     } else {
-      if (root.left === null) return root.right;
-      if (root.right === null) return root.left;
-      let small = this.small(root.right);
-      this.root = small.value;
+      if (root.left == null) return root.right;
+      if (root.right == null) return root.left;
+      const small = this.small(this.root);
+      root.value = small.value;
       root.right = this.delete(root.right, small.value);
     }
-    return root;
   }
   small(root) {
     while (root.left) {

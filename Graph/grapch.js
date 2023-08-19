@@ -22,37 +22,38 @@ class Graph {
     delete this.list[value];
   }
 
-  depthFS(value) {
-    if (!value) return;
-    const visited = {};
-    const list = this.list;
-    const result = [];
-    (function DFS(value) {
-      visited[value] = true;
-      result.push(value);
-      list[value].forEach((element) => {
-        if (!visited[element]) return DFS(element);
-      });
-    })(value);
-    return result;
-  }
-
-  breadthFS(value) {
-    let node;
+  depthFS() {
     let result = [];
     let visited = {};
-    let queue = [value];
-    while (queue.length) {
-      node = queue.shift();
-      visited[node] = true;
-      result.push(node);
-      this.list[node].forEach((element) => {
-        if(!visited[element]){
-          queue.push(element)
-          visited[element]=true
-        }
-      });
+    let list = this.list();
+    function DFS(list) {
+      if (!visited[list]) {
+        visited[list] = true;
+        result.push(list);
+        list[list].forEach((neigbour) => {
+          if (!visited[neigbour]) {
+            DFS(neigbour);
+          }
+        });
+      }
     }
-    return result
+    DFS(list);
+  }
+
+  breadthFS(start) {
+    const result = [];
+    const visited = {};
+    visited[start] =true
+    const queue = [start];
+    while (queue.length) {
+     const node = queue.shift()
+     result.push(node)
+     this.list[node].forEach((neigbour) => {
+      if(!visited[neigbour]){
+        queue.push(neigbour)
+        visited[neigbour] = true
+      }
+     })
+    }
   }
 }

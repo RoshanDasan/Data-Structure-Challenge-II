@@ -10,7 +10,7 @@ class BST {
   constructor() {
     this.root = null;
   }
-
+  
   set(value) {
     if (this.root === null) {
       this.root = new TreeNode(value);

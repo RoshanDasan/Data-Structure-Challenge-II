@@ -86,5 +86,5 @@ graph.addEdge("aromal", "anirudh");
 graph.addEdge("anirudh", "sterin");
 graph.addEdge("sterin", "roshan");
 
-graph.depthFS("roshan")
+graph.depthFS("roshan");
 console.log(graph);

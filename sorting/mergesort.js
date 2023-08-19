@@ -1,3 +1,12 @@
+// merging function
+const merge = (arr) => {
+  if (arr.length <= 1) return arr;
+  const mid = Math.floor(arr.length / 2);
+  const left = arr.slice(0, mid);
+  const right = arr.slice(mid, arr.length);
+  return sort(merge(left), merge(right));
+};
+
 // sorting
 const sort = (left, right) => {
   let result = [],
@@ -12,13 +21,6 @@ const sort = (left, right) => {
   return result;
 };
 
-// function2
-const merge = (arr) => {
-  if (arr.length <= 1) return arr;
-  const mid = Math.floor(arr.length / 2);
-  const left = arr.slice(0, mid);
-  const right = arr.slice(mid, arr.length);
-  return sort(merge(left), merge(right));
-};
+
 
 console.log(merge([4, 3, 6, 1, 5, 2]));

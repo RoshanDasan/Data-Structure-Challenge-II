@@ -8,8 +8,7 @@ function quickSort(arr) {
   arr.slice(0, arr.length - 1).forEach((element) => {
     element < pivote ? left.push(element) : right.push(element);
   });
-  if (left.length && right.length)
-    return [...quickSort(left), pivote, ...quickSort(right)];
+  if (left.length && right.length) return [...quickSort(left), pivote, ...quickSort(right)];
   else if (left.length) return [...quickSort(left), pivote];
   else return [pivote, ...quickSort(right)];
 }
